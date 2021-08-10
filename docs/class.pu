@@ -1,0 +1,119 @@
+@startuml
+title Class Diagram
+
+' ツッコミどころ
+' - Userはinterfaceにして、Abstract Factoryパターンにした方が、具体への依存を防げる -> 依存に対して丁寧な実装ではあるが、やり過ぎ感ある気もする
+' - Output Data<DS>が消滅した -> Entityの返り値、UseCase内で使用するだけのものなので、クラスとして定義する必要はないと判断
+
+' 参考
+' - https://www.baeldung.com/spring-boot-clean-architecture
+' - https://nrslib.com/clean-architecture-with-java/
+
+' package domain {
+'     package entities.user {
+
+'         ' Data Access Interface
+'         interface UserRepository {
+'             + save(User user)
+'         }
+
+'         interface User
+
+'         interface UserFactory {
+'             User create(String name)
+'         }
+'     }
+
+'     package entities.user.commonuser {
+
+'         CommonUser <|-- User
+'         CommonUserFactory <|-- UserFactory
+
+'         CommonUser "1" - "1" CommonUserId
+'         CommonUser "1" - "1" CommonUserName
+
+'         ' Entity
+'         class CommonUser {
+'             - CommonUserId id
+'             - CommonUserName name
+'         }
+
+'         class CommonUserFactory
+
+'         ' VO(Value Object)
+'         class CommonUserId {
+'             - String value
+'             + getValue()
+'         }
+
+'         ' VO
+'         class CommonUserName {
+'             - String value
+'             + getValue()
+'         }
+'     }
+
+' }
+
+' package usecases {
+'     package core {
+'         ' Input Data<DS>
+'         interface Input
+'         ' View Model<DS>
+'         interface ViewModel
+
+'         ' Input Boundary Core
+'         interface UseCase {
+'             ViewModel handle(Input input)
+'         }
+'     }
+'     package user.add {
+'         UserAddInput <|-- Input
+'         UserAddUseCase <|-- UseCase
+'         UserAddInteractor <|-- UserAddUseCase
+'         UserAddPresenter <|-- UserAddResponseFormatter
+'         UserAddViewModel <|-- ViewModel
+
+'         UserAddInteractor "1" - UserAddPresenter
+
+'         ' Presenter
+'         interface UserAddPresenter {
+'             + ViewModel successView(User user)
+'             + ViewModel failView(String message)
+'         }
+
+'         ' Input Boundary
+'         interface UserAddUseCase {
+'             + UserAddViewModel handle(UserAddInput input)
+'         }
+
+'         class UserAddInput
+'         class UserAddViewModel
+'         class UserAddResponseFormatter
+
+'         ' Use Case Interactor
+'         class UserAddInteractor {
+'             - UserAddPresenter userPresenter
+'             - UserRepository userRepository
+'         }
+
+'     }
+' }
+
+' package dataaccess.user {
+'     UserRepositoryInMemory <|-- UserRepository
+
+'     class UserRepositoryInMemory
+' }
+
+' package com.springboot {
+
+'     UserAddController "1" -- "1" UserAddUseCase
+
+'     class UserAddController {
+'         - UserAddUseCase usecase
+'         + void action()
+'     }
+' }
+
+' @enduml
