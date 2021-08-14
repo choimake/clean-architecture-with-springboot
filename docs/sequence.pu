@@ -1,0 +1,20 @@
+@startuml
+title ユーザー登録 シーケンス図
+actor ユーザー
+control Controller
+control Presenter
+control UseCase
+entity User
+database Database
+
+ユーザー --> Controller : 名前を入力する
+Controller --> UseCase : 名前を渡す
+UseCase --> User : 名前を渡す
+User --> UseCase : 渡された名前を元にユーザーを作成する
+UseCase --> Database : ユーザーを登録する
+Database --> UseCase : ユーザーの登録を実行し、結果を返す
+UseCase --> Controller : ユーザー登録の結果を受け取る
+Controller --> Presenter : ユーザー登録の結果をユーザー返却用に加工する
+Presenter --> Controller : ユーザー登録の結果を加工したデータを返す
+Controller --> ユーザー : ユーザー登録の結果を返す
+@enduml
