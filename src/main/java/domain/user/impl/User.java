@@ -3,16 +3,25 @@ package domain.user.impl;
 import domain.user.IUser;
 
 public final class User implements IUser {
-    private String name;
+    private final String name;
 
     public User(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
+    public boolean isValidName() {
         if (name == null) {
-            throw new IllegalArgumentException("name is null");
+            return false;
         }
         if (name.isBlank()) {
-            throw new IllegalArgumentException("name is empty or only whitespace");
+            return false;
         }
-
-        this.name = name;
+        return true;
     }
 }

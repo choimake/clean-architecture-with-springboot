@@ -43,10 +43,10 @@ package usecases {
             UserAddOutput handle(UserAddInput input)
         }
 
-        package usecases.user.add.commonuser {
-            UserAddUseCaseInteractor <|-- IUserAddUseCase
+        package usecases.user.add.impl {
+            UserAddInteractor <|-- IUserAddUseCase
 
-            class UserAddUseCaseInteractor {
+            class UserAddInteractor {
                 - UserFactory userFactory
                 - UserRepository userRepository
             }

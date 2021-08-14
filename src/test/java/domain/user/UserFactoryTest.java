@@ -5,31 +5,22 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public final class UserFactoryTest {
 
     @Test
-    void givenNullName_thenThrowIllegalArgumentException() {
+    void givenNullName_thenIsValidNameReturnFalse() {
         var factory = new UserFactory();
-        var exception = assertThrows(
-            IllegalArgumentException.class,
-            () -> factory.create(null),
-            "Expected create() to throw, but it didn't"
-        );
-        assertTrue(exception.getMessage().contentEquals("name is null"));
+        var user = factory.create(null);
+        assertFalse(user.isValidName());
     }
 
     @ParameterizedTest
     @ValueSource(strings = { "", " " })
-    void givenEmptyNameOrOnlyWhitespaceName_thenThrowIllegalArgumentException(String name) {
+    void givenEmptyNameOrOnlyWhitespaceName_thenIsValidNameReturnFalse(String name) {
         var factory = new UserFactory();
-        var exception = assertThrows(
-            IllegalArgumentException.class,
-            () -> factory.create(name),
-            "Expected create() to throw, but it didn't"
-        );
-        assertTrue(exception.getMessage().contentEquals("name is empty or only whitespace"));
+        var user = factory.create(name);
+        assertFalse(user.isValidName());
     }
 }
