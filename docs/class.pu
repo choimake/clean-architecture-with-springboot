@@ -5,7 +5,6 @@ title ユーザー登録 クラス図
 ' - https://www.baeldung.com/spring-boot-clean-architecture
 ' - https://nrslib.com/clean-architecture-with-java/
 
-' domain
 package domain.entities.user {
     ' Data Access Interface
     interface IUserRepository {
@@ -28,7 +27,6 @@ package domain.entities.user {
     }
 }
 
-' usecases
 package usecases {
     package usecases.user.add {
 
@@ -65,7 +63,6 @@ package presenter {
 
         package presenter.user.add.impl {
             UserAddPresenter <|-- IUserAddPresenter
-            UserAddViewModel <|-- IUserAddViewModel
         }
     }
 }
