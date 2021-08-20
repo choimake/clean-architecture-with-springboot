@@ -14,7 +14,7 @@ public final class User implements IUser {
     }
 
     @Override
-    public UserName getName() {
+    public UserName name() {
         return this.name;
     }
 }
