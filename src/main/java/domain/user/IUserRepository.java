@@ -6,7 +6,8 @@ public interface IUserRepository {
     /**
      * Save user.
      * @param user User instance
+     * @return IUser User instance
      * @throws IOException If fail to save, throws Exception.
      */
-    void save(IUser user) throws IOException;
+    IUser save(IUser user) throws IOException;
 }
