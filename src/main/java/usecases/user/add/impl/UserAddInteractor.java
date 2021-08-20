@@ -1,5 +1,6 @@
 package usecases.user.add.impl;
 
+import domain.user.IUser;
 import domain.user.IUserRepository;
 import domain.user.IUserFactory;
 import usecases.user.add.IUserAddUseCase;
@@ -26,10 +27,11 @@ public final class UserAddInteractor implements IUserAddUseCase {
         }
 
         // userを作成
-        var user = userFactory.create(input.userName);
-
-        if (!user.isValidName()) {
-            return new UserAddOutput(UserAddOutputStatus.USER_NAME_IS_INVALID, user);
+        IUser user = null;
+        try {
+            user = userFactory.create(input.userName);
+        } catch (IllegalArgumentException e) {
+            return new UserAddOutput(UserAddOutputStatus.USER_NAME_IS_INVALID, null);
         }
 
         // ストレージに登録

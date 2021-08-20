@@ -1,27 +1,17 @@
 package domain.user.impl;
 
 import domain.user.IUser;
+import domain.user.UserName;
 
 public final class User implements IUser {
-    private final String name;
+    private final UserName name;
 
-    public User(String name) {
+    public User(UserName name) {
         this.name = name;
     }
 
     @Override
-    public String getName() {
+    public UserName getName() {
         return this.name;
-    }
-
-    @Override
-    public boolean isValidName() {
-        if (name == null) {
-            return false;
-        }
-        if (name.isBlank()) {
-            return false;
-        }
-        return true;
     }
 }
