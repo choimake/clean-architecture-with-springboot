@@ -18,6 +18,8 @@ package domain.entities.user {
     }
 
     ' Value Object
+    class UserId
+    ' Value Object
     class UserName
 
     package domain.entities.user.impl {
