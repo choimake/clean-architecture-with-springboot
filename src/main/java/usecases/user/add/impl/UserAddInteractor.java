@@ -29,7 +29,7 @@ public final class UserAddInteractor implements IUserAddUseCase {
         // userを作成
         IUser user = null;
         try {
-            user = userFactory.create(input.userName);
+            user = userFactory.create(input.userName());
         } catch (IllegalArgumentException e) {
             return new UserAddOutput(UserAddOutputStatus.USER_NAME_IS_INVALID, null);
         }

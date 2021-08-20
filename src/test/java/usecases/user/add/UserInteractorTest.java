@@ -18,7 +18,7 @@ public final class UserInteractorTest {
         var repository = new UserRepositoryInMemory();
         var useCase = new UserAddInteractor(factory, repository);
         var output = useCase.create(null);
-        assertSame(UserAddOutputStatus.INPUT_IS_NULL, output.status);
+        assertSame(UserAddOutputStatus.INPUT_IS_NULL, output.status());
     }
 
     @Test
@@ -28,7 +28,7 @@ public final class UserInteractorTest {
         var useCase = new UserAddInteractor(factory, repository);
         var input = new UserAddInput(null);
         var output = useCase.create(input);
-        assertSame(UserAddOutputStatus.USER_NAME_IS_INVALID, output.status);
+        assertSame(UserAddOutputStatus.USER_NAME_IS_INVALID, output.status());
     }
 
     @ParameterizedTest
@@ -39,7 +39,7 @@ public final class UserInteractorTest {
         var useCase = new UserAddInteractor(factory, repository);
         var input = new UserAddInput(name);
         var output = useCase.create(input);
-        assertSame(UserAddOutputStatus.USER_NAME_IS_INVALID, output.status);
+        assertSame(UserAddOutputStatus.USER_NAME_IS_INVALID, output.status());
     }
 
     @Test
@@ -49,7 +49,7 @@ public final class UserInteractorTest {
         var useCase = new UserAddInteractor(factory, repository);
         var input = new UserAddInput("validName");
         var output = useCase.create(input);
-        assertSame(UserAddOutputStatus.FAIL_TO_SAVE_USER, output.status);
+        assertSame(UserAddOutputStatus.FAIL_TO_SAVE_USER, output.status());
     }
 
 }

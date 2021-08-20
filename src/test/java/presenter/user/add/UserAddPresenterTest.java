@@ -36,8 +36,8 @@ public class UserAddPresenterTest {
         var output = new UserAddOutput(UserAddOutputStatus.SUCCESS, new UserFactory().create(userName));
         var viewModel = presenter.handle(output, LocalDateTime.now());
 
-        assertEquals(userName, viewModel.getUserName());
-        assertEquals("2021-07-08 22:06:00", viewModel.getTimestamp());
+        assertEquals(userName, viewModel.userName());
+        assertEquals("2021-07-08 22:06:00", viewModel.timestamp());
     }
 
     @Test
