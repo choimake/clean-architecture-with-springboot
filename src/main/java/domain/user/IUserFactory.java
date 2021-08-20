@@ -2,8 +2,8 @@ package domain.user;
 
 public interface IUserFactory {
     /**
-     * create IUser instance.
-     * @param name username.
+     * Create IUser instance.
+     * @param name UserName
      * @return IUser instance
      */
     IUser create(String name);
