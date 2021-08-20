@@ -1,5 +1,7 @@
 package presenter.user.add;
 
+import domain.user.UserName;
+import domain.user.impl.User;
 import domain.user.impl.UserFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,7 @@ import usecases.user.add.UserAddOutputStatus;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 // reference:
 // https://qiita.com/opengl-8080/items/efe54204e25f615e322f
@@ -31,12 +34,17 @@ public class UserAddPresenterTest {
 
     @Test
     public void givenSuccessOutput_thenReturnSuccessViewModel() {
-        var userName = "validName";
+        // mock
+        var user = mock(User.class);
+        var userName = mock(UserName.class);
+        when(userName.value()).thenReturn("name");
+        when(user.name()).thenReturn(userName);
+
         var presenter = new UserAddPresenter();
-        var output = new UserAddOutput(UserAddOutputStatus.SUCCESS, new UserFactory().create(userName));
+        var output = new UserAddOutput(UserAddOutputStatus.SUCCESS, user);
         var viewModel = presenter.handle(output, LocalDateTime.now());
 
-        assertEquals(userName, viewModel.userName());
+        assertEquals(user.name().value(), viewModel.userName());
         assertEquals("2021-07-08 22:06:00", viewModel.timestamp());
     }
 
