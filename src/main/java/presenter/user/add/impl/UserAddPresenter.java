@@ -32,6 +32,6 @@ public class UserAddPresenter implements IUserAddPresenter {
 
         var formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm:ss");
         var timestamp = now.format(formatter);
-        return new UserAddViewModel(output.user().name().getValue(), timestamp);
+        return new UserAddViewModel(output.user().name().value(), timestamp);
     }
 }
