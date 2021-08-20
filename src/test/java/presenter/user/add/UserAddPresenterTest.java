@@ -2,7 +2,6 @@ package presenter.user.add;
 
 import domain.user.UserName;
 import domain.user.impl.User;
-import domain.user.impl.UserFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;

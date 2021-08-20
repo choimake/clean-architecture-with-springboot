@@ -3,7 +3,6 @@ package repositories.user;
 import domain.user.IUser;
 import domain.user.IUserFactory;
 import domain.user.IUserRepository;
-import domain.user.impl.User;
 
 import java.io.IOException;
 import java.util.ArrayList;

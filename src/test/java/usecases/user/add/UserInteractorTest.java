@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import repositories.user.UserRepositoryInMemory;
-import stubs.repositories.user.UserRepositoryAlwaysFailToSave;
 import usecases.user.add.impl.UserAddInteractor;
 
 import java.io.IOException;
