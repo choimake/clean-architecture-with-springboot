@@ -17,12 +17,17 @@ package domain.entities.user {
         IUser create(String name)
     }
 
+    ' Value Object
+    class UserId
+    ' Value Object
+    class UserName
+
     package domain.entities.user.impl {
         User <|-- IUser
         UserFactory <|-- IUserFactory
 
         class User {
-            - String name
+            - UserName name
         }
     }
 }

@@ -1,6 +1,14 @@
 package domain.user;
 
 public interface IUser {
-    String getName();
-    boolean isValidName();
+    /**
+     * Returns the UserId.
+     * @return id of User
+     */
+    UserId id();
+    /**
+     * Returns the UserName.
+     * @return name of User
+     */
+    UserName name();
 }

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 public class UserAddController {
 
     private final IUserFactory userFactory = new UserFactory();
-    private final IUserRepository userRepository = new UserRepositoryInMemory();
+    private final IUserRepository userRepository = new UserRepositoryInMemory(userFactory);
     private final IUserAddPresenter presenter = new UserAddPresenter();
 
     @PostMapping
